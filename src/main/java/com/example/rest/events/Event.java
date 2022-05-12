@@ -2,8 +2,11 @@ package com.example.rest.events;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,8 +23,12 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(of = "id")//값비굘르위해
 //@Data 안쓰는 이유는 스택오버플로우가 날수도 있어서 일일이 써주는걸 권장?
+@Entity
 public class Event {
 	
+    //No identifier specified for entity 조심 Id 어노테이션 줘야함
+    @Id @GeneratedValue
+    private Integer id;
 	private String name;
     private String description;
     private LocalDateTime beginEnrollmentDateTime;
@@ -33,7 +41,7 @@ public class Event {
     private int limitOfEnrollment;
     
     //추가필드
-    private Integer id;
+    
     private boolean offline;
     private boolean free;
     @Enumerated(EnumType.STRING)

@@ -41,10 +41,10 @@ public class EventControllerTests {
 				      .basePrice(100)
 				      .maxPrice(200)
 				      .limitOfEnrollment(100)
-				      .location("m2b 공유오피스").id(10)
+				      .location("m2b 공유오피스")
 				      .build();
 		
-		mockMvc.perform(post("/api/events/")
+		mockMvc.perform(post("/api/events")
 				   .contentType(MediaType.APPLICATION_JSON_UTF8)
 				   .accept(MediaTypes.HAL_JSON)
 				   .content(objectMapper.writeValueAsString(event)))

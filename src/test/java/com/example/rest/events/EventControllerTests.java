@@ -20,6 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
@@ -100,5 +101,21 @@ public class EventControllerTests {
 		        
 		         
 	}
+	
+	
+	@Test
+	public void createEvent_Bad_Request_Empty_Input() throws JsonProcessingException, Exception {
+		
+		EventDto eventDto = EventDto.builder().build();
+		
+		this.mockMvc.perform(post("/api/events")
+				    .contentType(MediaType.APPLICATION_JSON_UTF8)
+				    .content(objectMapper.writeValueAsString(eventDto)))
+		            .andExpect(status().isBadRequest());
+		
+		
+		
+	}
+	
 	
 }

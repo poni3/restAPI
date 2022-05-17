@@ -8,11 +8,12 @@ import org.springframework.validation.Errors;
 @Component
 public class EventValidator {
 	
-	public void validae(EventDto eventDto, Errors errors) {
+	public void validate(EventDto eventDto, Errors errors) {
 		
 		if(eventDto.getBasePrice() > eventDto.getMaxPrice() && eventDto.getMaxPrice() != 0) {
 			errors.rejectValue("basePrice", "wrongValue", "BasePrice is wrong");
 			errors.rejectValue("MaxPrice", "wrongValue", "Max is wrong");
+			errors.reject("wrongValue", "value of wrong");
 		}
 		
 		LocalDateTime end = eventDto.getEndEventDateTime();
